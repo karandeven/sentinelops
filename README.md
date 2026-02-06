@@ -1,0 +1,69 @@
+# SentinelOps
+
+SentinelOps ek simple Linux system monitoring project hai jo maine Bash scripting se banaya hai.
+
+Is project ka main goal tha ye samajhna ki Linux system ke andar
+CPU, RAM aur Disk usage ka data kaise nikalta hai aur usko kaise store kar sakte hain.
+
+---
+
+## What this project does
+
+Ye script system se ye cheezein collect karta hai:
+
+- CPU usage
+- RAM usage
+- Disk usage
+- Current time (timestamp)
+
+Aur har run pe ye data:
+- terminal pe show hota hai
+- ek CSV file (`system_metrics.csv`) mein save ho jaata hai
+
+---
+
+## Tech used
+
+- Ubuntu (WSL2)
+- Bash scripting
+- Git & GitHub
+
+---
+
+## How it works
+
+1. Script start hoti hai  
+2. Current time nikalti hai  
+3. CPU, RAM aur Disk ka usage read karti hai  
+4. Data terminal pe print hota hai  
+5. Same data CSV file mein append ho jaata hai  
+
+---
+
+## Sample output
+
+
+---
+
+## What I learned
+
+- Linux system metrics kaise kaam karte hain
+- Bash scripting basics
+- Git & GitHub workflow
+- Real project banana aur GitHub pe host karna
+
+---
+
+## Current status
+
+Phase 1 complete hai.  
+Script stable hai aur properly kaam kar rahi hai.
+
+---
+
+## Future plans
+
+- Cron job automation
+- Grafana visualization
+- AWS EC2 deployment
+
