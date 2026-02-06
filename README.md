@@ -41,7 +41,10 @@ Aur har run pe ye data:
 ---
 
 ## Sample output
-
+Time: 2026-02-06 23:30:09
+CPU Usage: 1.26 %
+RAM Usage: 11.95 %
+Disk Usage: 1%
 
 ---
 
