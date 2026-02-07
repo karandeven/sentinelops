@@ -1,4 +1,4 @@
-# SentinelOps
+# SentinelOps – Linux System Monitoring with Bash
 
 SentinelOps ek simple Linux system monitoring project hai jo maine Bash scripting se banaya hai.
 
