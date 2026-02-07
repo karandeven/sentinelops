@@ -15,7 +15,6 @@ jo Bash scripting ke through system monitoring samajhna chahte hain.
 Ye production-grade monitoring tool nahi hai.
 Ye ek learning-focused project hai.
 
-
 ---
 
 ## What this project does
@@ -67,17 +66,3 @@ Disk Usage: 1%
 - Real project banana aur GitHub pe host karna
 
 ---
-
-## Current status
-
-Phase 1 complete hai.  
-Script stable hai aur properly kaam kar rahi hai.
-
----
-
-## Future plans
-
-- Cron job automation
-- Grafana visualization
-- AWS EC2 deployment
-
