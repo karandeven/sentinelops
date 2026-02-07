@@ -1,9 +1,23 @@
 # SentinelOps – Linux System Monitoring with Bash
 
-SentinelOps ek simple Linux system monitoring project hai jo maine Bash scripting se banaya hai.
+# SentinelOps – Linux System Monitoring with Bash
 
-Is project ka main goal tha ye samajhna ki Linux system ke andar
-CPU, RAM aur Disk usage ka data kaise nikalta hai aur usko kaise store kar sakte hain.
+SentinelOps ek simple Linux system monitoring project hai jo maine Bash scripting
+use karke banaya hai.
+
+Is project ka main goal ye samajhna tha:
+- CPU usage kaise nikalta hai
+- RAM usage kaise calculate hota hai
+- Disk usage ka data kaise collect aur log kiya jaata hai
+
+## Who is this project for?
+
+Ye project Linux beginners aur DevOps aspirants ke liye hai
+jo Bash scripting ke through system monitoring samajhna chahte hain.
+
+Ye production-grade monitoring tool nahi hai.
+Ye ek learning-focused project hai.
+
 
 ---
 
