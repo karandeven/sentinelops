@@ -1,57 +1,63 @@
 #!/bin/bash
 
-# ===============================
-# SentinelOps - System Monitor
-# Author: karandeven
-# ===============================
+# SentinelOps - Simple System Monitor
+# Written by: karandeven
+# Learning-focused script (safe & stable)
 
 LOG_FILE="sentinel.log"
 CSV_FILE="system_metrics.csv"
 
-CPU_THRESHOLD=${CPU_THRESHOLD:-80}
-RAM_THRESHOLD=${RAM_THRESHOLD:-80}
-DISK_THRESHOLD=${DISK_THRESHOLD:-90}
+CPU_THRESHOLD=80
+RAM_THRESHOLD=80
+DISK_THRESHOLD=80
 
 log() {
   echo "[$(date '+%Y-%m-%d %H:%M:%S')] $1" >> "$LOG_FILE"
 }
 
-# Create CSV header once
+log "INFO: Script started"
+
+# CSV header (run once)
 if [ ! -f "$CSV_FILE" ]; then
   echo "time,cpu,ram,disk" > "$CSV_FILE"
 fi
 
-TIMESTAMP=$(date '+%Y-%m-%d %H:%M:%S')
+timestamp=$(date "+%Y-%m-%d %H:%M:%S")
 
-CPU_USAGE=$(top -bn1 | awk '/Cpu/ {print 100 - $8}')
-CPU_INT=${CPU_USAGE%.*}
+# -------- CPU usage (SAFE METHOD) --------
+cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print 100 - $8}' | cut -d. -f1)
 
-RAM_USAGE=$(free | awk '/Mem:/ {printf "%.0f", $3*100/$2}')
-DISK_USAGE=$(df / | awk 'NR==2 {print $5}' | tr -d '%')
+# -------- RAM usage --------
+ram_usage=$(free | awk '/Mem:/ {printf "%d", $3*100/$2}')
 
+# -------- Disk usage --------
+disk_usage=$(df / | awk 'NR==2 {gsub("%",""); print $5}')
+
+# -------- Output --------
 echo "SentinelOps Brain started"
-echo "Time: $TIMESTAMP"
-echo "CPU Usage: $CPU_USAGE %"
-echo "RAM Usage: $RAM_USAGE %"
-echo "Disk Usage: $DISK_USAGE %"
+echo "Time: $timestamp"
+echo "CPU Usage: $cpu_usage %"
+echo "RAM Usage: $ram_usage %"
+echo "Disk Usage: $disk_usage %"
 
-log "INFO: Script started"
-
-STATUS="INFO: System healthy"
-
-if [ "$CPU_INT" -ge "$CPU_THRESHOLD" ]; then
-  STATUS="ALERT: CPU high ($CPU_USAGE%)"
+# -------- Alerts --------
+if [ "$cpu_usage" -ge "$CPU_THRESHOLD" ]; then
+  echo "🔥 CPU HIGH ($cpu_usage%)"
+  log "ALERT: CPU high ($cpu_usage%)"
 fi
 
-if [ "$RAM_USAGE" -ge "$RAM_THRESHOLD" ]; then
-  STATUS="ALERT: RAM high ($RAM_USAGE%)"
+if [ "$ram_usage" -ge "$RAM_THRESHOLD" ]; then
+  echo "🔥 RAM HIGH ($ram_usage%)"
+  log "ALERT: RAM high ($ram_usage%)"
 fi
 
-if [ "$DISK_USAGE" -ge "$DISK_THRESHOLD" ]; then
-  STATUS="ALERT: Disk high ($DISK_USAGE%)"
+if [ "$disk_usage" -ge "$DISK_THRESHOLD" ]; then
+  echo "🔥 DISK HIGH ($disk_usage%)"
+  log "ALERT: Disk high ($disk_usage%)"
 fi
 
-log "$STATUS"
+# -------- Save to CSV --------
+echo "$timestamp,$cpu_usage,$ram_usage,$disk_usage" >> "$CSV_FILE"
 
-echo "$TIMESTAMP,$CPU_USAGE,$RAM_USAGE,$DISK_USAGE" >> "$CSV_FILE"
+log "INFO: CPU=$cpu_usage% RAM=$ram_usage% DISK=$disk_usage%"
 
