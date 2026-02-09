@@ -4,8 +4,10 @@
 # Simple Linux system monitoring script
 # Written by: karandeven
 
-LOG_FILE="sentinel.log"
-CSV_FILE="system_metrics.csv"
+LOG_FILE="logs/sentinel.log"
+CSV_FILE="data/system_metrics.csv"
+
+mkdir -p logs data
 
 CPU_THRESHOLD=${CPU_THRESHOLD:-80}
 

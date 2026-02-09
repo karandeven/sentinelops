@@ -1,19 +1,23 @@
-system_metrics.csv
+# =========================
+# SentinelOps - runtime
+# =========================
+
+# Logs & generated data
+logs/
+data/
+
+# Legacy files (safety)
 sentinel.log
 system_metrics.csv
-sentinel.log
 
-system_metrics.csv
-system_metrics.csv
-
-# Runtime logs
-sentinel.log
-system_metrics.csv
-
-# Editor junk
+# =========================
+# Editor junk (vim)
+# =========================
 *.swp
 *.swo
 
+# =========================
 # OS junk
+# =========================
 .DS_Store
 
